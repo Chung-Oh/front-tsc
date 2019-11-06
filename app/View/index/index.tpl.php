@@ -1,0 +1,1 @@
+<h1>Bem vindo <?php echo $name ?></h1>
