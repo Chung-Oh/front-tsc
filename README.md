@@ -1,8 +1,8 @@
-#TypeScript na Prática
+# TypeScript na Prática
 
 **Basic**
 
-- Compilar arquivos '.ts' de src/ para public/:
+- Compilar arquivos .ts de src/ para public/:
 
 `tsc src/posts.ts --outDir public`
 
@@ -12,7 +12,7 @@
 
 **Debugger**
 
-1. Compilar arquivo map para debugger no client-side
+1. Compilar arquivo map para debugger no client-side:
 
 `tsc --sourceMap`
 
