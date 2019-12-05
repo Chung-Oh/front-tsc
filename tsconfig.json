@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"target": "es5", // versão javascript a ser compilado
+		"rootDir": "src", // raiz da nossa aplicação
+		"outDir": "public", // alvo da compilação
+		"sourceMap": true
+	},
+	"files": [
+		"src/posts.ts"
+	]
+}
