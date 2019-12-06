@@ -1,55 +1,19 @@
-var BoxPostList = /** @class */ (function () {
-    function BoxPostList() {
-        this.buttonListSelector = "#" + BoxPostList.boxId + ">button[type=button]";
-        this.init();
-    }
-    BoxPostList.prototype.init = function () {
-        var _this = this;
-        var buttonList = document.querySelector(this.buttonListSelector);
-        buttonList.addEventListener('click', function () {
-            _this.hiddenBox();
-            var boxForm = document.getElementById(BoxPostForm.boxId);
-            boxForm.removeAttribute('style');
-        });
-    };
-    BoxPostList.prototype.hiddenBox = function () {
-        var boxList = document.getElementById(BoxPostList.boxId);
-        boxList.style.display = 'none';
-    };
-    BoxPostList.prototype.showBox = function () {
-        var boxList = document.getElementById(BoxPostList.boxId);
-        boxList.removeAttribute('style');
-    };
-    BoxPostList.boxId = 'box-post-list';
-    return BoxPostList;
-}());
-var BoxPostForm = /** @class */ (function () {
-    function BoxPostForm() {
-        this.buttonFormSelector = "#" + BoxPostForm.boxId + ">button[type=button]";
-        this.init();
-    }
-    BoxPostForm.prototype.init = function () {
-        var _this = this;
-        var buttonForm = document.querySelector(this.buttonFormSelector);
-        buttonForm.addEventListener('click', function () {
-            _this.hiddenBox();
-            var boxList = document.getElementById(BoxPostList.boxId);
-            boxList.removeAttribute('style');
-        });
-    };
-    BoxPostForm.prototype.hiddenBox = function () {
-        var boxForm = document.getElementById(BoxPostForm.boxId);
-        boxForm.style.display = 'none';
-    };
-    BoxPostForm.prototype.showBox = function () {
-        var boxForm = document.getElementById(BoxPostForm.boxId);
-        boxForm.removeAttribute('style');
-    };
-    BoxPostForm.boxId = 'box-post-form';
-    return BoxPostForm;
-}());
-new BoxPostForm();
-new BoxPostList();
+define(["require", "exports", "./event-manager", "./box-post-form", "./box-post-list"], function (require, exports, event_manager_1, box_post_form_1, box_post_list_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var PostPage = /** @class */ (function () {
+        function PostPage(eventManager) {
+            this.eventManager = eventManager;
+            this.init();
+        }
+        PostPage.prototype.init = function () {
+            new box_post_list_1.BoxPostList(this.eventManager);
+            new box_post_form_1.BoxPostForm(this.eventManager);
+        };
+        return PostPage;
+    }());
+    new PostPage(new event_manager_1.EventManager());
+});
 /*** Não se deve trabalhar dessa maneira com TypeScript, abaixo é ES6 ***/
 // const buttonForm = document.querySelector('#box-post-form>button[type=button]');
 // buttonForm.addEventListener('click', () => {

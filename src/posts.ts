@@ -1,53 +1,18 @@
-class BoxPostList {
-	static boxId = 'box-post-list';
-	private buttonListSelector = `#${BoxPostList.boxId}>button[type=button]`;
-	constructor() {
+import {EventManager} from './event-manager';
+import {BoxPostForm} from './box-post-form';
+import {BoxPostList} from './box-post-list';
+
+class PostPage {
+	constructor(private eventManager: EventManager) {
 		this.init();
 	}
 	private init() {
-		const buttonList = document.querySelector(this.buttonListSelector);
-		buttonList.addEventListener('click', () => {
-			this.hiddenBox();
-			const boxForm = document.getElementById(BoxPostForm.boxId);
-			boxForm.removeAttribute('style');
-		});
-	}
-	private hiddenBox() {
-		const boxList = document.getElementById(BoxPostList.boxId);
-		boxList.style.display = 'none';
-	}
-	private showBox() {
-		const boxList = document.getElementById(BoxPostList.boxId);
-		boxList.removeAttribute('style');
+		new BoxPostList(this.eventManager);
+		new BoxPostForm(this.eventManager);
 	}
 }
 
-class BoxPostForm {
-	static boxId = 'box-post-form';
-	private buttonFormSelector = `#${BoxPostForm.boxId}>button[type=button]`;
-	constructor() {
-		this.init();
-	}
-	private init() {
-		const buttonForm = document.querySelector(this.buttonFormSelector);
-		buttonForm.addEventListener('click', () => {
-			this.hiddenBox();
-			const boxList = document.getElementById(BoxPostList.boxId);
-			boxList.removeAttribute('style');
-		});
-	}
-	private hiddenBox() {
-		const boxForm = document.getElementById(BoxPostForm.boxId);
-		boxForm.style.display = 'none';
-	}
-	private showBox() {
-		const boxForm = document.getElementById(BoxPostForm.boxId);
-		boxForm.removeAttribute('style');
-	}
-}
-
-new BoxPostForm();
-new BoxPostList();
+new PostPage(new EventManager());
 
 
 /*** Não se deve trabalhar dessa maneira com TypeScript, abaixo é ES6 ***/
